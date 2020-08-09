@@ -8,5 +8,5 @@ define("DB_NAME", "erebos");
 define("DB_USER", "root");
 define("DB_PASS", "");
 
-include_once 'classes/Database.php';
+include_once 'classes/Core.php';
 include_once 'classes/Erebos.php';

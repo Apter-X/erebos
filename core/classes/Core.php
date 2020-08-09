@@ -4,9 +4,10 @@
 * This PHP class allows you to simplify SQL requests (with PDO)
 *
 */
-class Database 
+class Core 
 {
   private $db;
+  private $rows;
 
   public function __construct()
   {

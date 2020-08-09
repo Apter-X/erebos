@@ -1,16 +1,18 @@
 <?php
 function printed($vars)
 {
-    echo "<pre>";   
+    echo "<div class=\"float-right col text-right\"><pre>";   
         print_r($vars);
-    echo "</pre>";
+        echo "<div>----------------------</div>";
+    echo "</pre></div>";
 }
 
 function debug($vars)
 {
-    echo "<pre>";
+    echo "<div class=\"float-right col text-right\"><pre>";
         var_dump($vars);
-    echo "</pre>";
+        echo "<div>----------------------</div>";
+    echo "</pre></div>";
 }
 
 function str_secure($string)

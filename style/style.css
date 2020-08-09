@@ -3,9 +3,13 @@ body {
 	font-size: 1.25em;
     margin: 0;
     color: #ffffff;
-    background: #000;
+    background: #000000;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+pre {
+    color: #2cff6b;
 }
 
 /* Links */
@@ -37,6 +41,12 @@ a{
     font-size: 1.25em;
 }
 
+.ascii-art {
+    font-family: monospace;
+    white-space: pre;
+    color: #2cff6b;
+}
+
 #input-box:focus,
 #input-box{
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0), 0 0 8px rgba(0, 0, 0, 0);
@@ -46,6 +56,5 @@ a{
     -webkit-appearance: none;
     font-family: 'VT323', monospace;
     font-size: 1.25em;
-    color: #fff;
+    color: #ffffff;
 }
-
