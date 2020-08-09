@@ -1,24 +1,18 @@
 <?php
 /**
- * Class DB
- * This PHP class allows you to simplify SQL requests (with PDO)
- *
- */
-class Database {
+* Class DB
+* This PHP class allows you to simplify SQL requests (with PDO)
+*
+*/
+class Database 
+{
   private $db;
 
-  /**
-  * Connect to the database
-  * @param $dbhost
-  * @param $dbname
-  * @param $dbuser
-  * @param $dbpswd
-  */
-  public function __construct($dbhost, $dbname, $dbuser, $dbpswd)
+  public function __construct()
   {
     try
     {
-      $database = new PDO('mysql:host=' . $dbhost . ';dbname=' . $dbname . ';charset=utf8', $dbuser, $dbpswd);
+      $this->db = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8', DB_USER, DB_PASS);
     }
     catch(Exception $event)
     {

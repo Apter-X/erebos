@@ -8,6 +8,15 @@
 *         \/             \/    \/           \/ 
 */
 
-Class Erebos extends Database {
-    
+Class Erebos extends Database 
+{
+    public function request()
+    {
+
+    }
+
+    public function response()
+    {
+        
+    }
 }
