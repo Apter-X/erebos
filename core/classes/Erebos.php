@@ -12,7 +12,6 @@ Class Erebos extends Core
 
         echo "<div class=\"col\"><pre>";
         var_dump($values);
-        echo "<div>----------------------</div>";
         echo "</pre></div>";
     }
 
@@ -21,7 +20,7 @@ Class Erebos extends Core
 
     }
 
-    public function insertData($table, $targets, $values)
+    public function insertData($table, $targets, $object)
     {
         $entry = str_replace(':', '', $targets);
 
@@ -31,7 +30,6 @@ Class Erebos extends Core
 
         $this->setFetchMode(PDO::FETCH_ASSOC);
         $response = $this->execute($request, $values);
-        return $response;
     }
 
     public function fetchValue($target, $table, $key, $value)
@@ -54,7 +52,8 @@ Class Erebos extends Core
 
         $this->setFetchMode(PDO::FETCH_ASSOC);
         $query = $this->fetch($request);
-        $values = array_map(function($var){ return $var['name']; }, $query);
+
+        $values = array_map(function($var){ return $var['ip']; }, $query);
 
         return $values;
     }
