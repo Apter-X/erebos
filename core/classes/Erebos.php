@@ -1,27 +1,40 @@
 <?php
-/*
-* ___________             ___.                 
-* \_   _____/______   ____\_ |__   ____  ______
-*  |    __)_\_  __ \_/ __ \| __ \ /  _ \/  ___/
-*  |        \|  | \/\  ___/| \_\ (  <_> )___ \ 
-* /_______  /|__|    \___  >___  /\____/____  >
-*         \/             \/    \/           \/ 
-*/
-
 Class Erebos extends Core 
 {
-    public function insertData($table, $targets, $values)
+    public function debug($table)
     {
         $request = <<<EOT
-            INSERT INTO $table ($targets) VALUES ($values)
+            SELECT * FROM $table
         EOT;
 
         $this->setFetchMode(PDO::FETCH_ASSOC);
-        $response = $this->exec($request);
+        $values = $this->fetch($request);
+
+        echo "<div class=\"col\"><pre>";
+        var_dump($values);
+        echo "<div>----------------------</div>";
+        echo "</pre></div>";
+    }
+
+    public function login()
+    {
+
+    }
+
+    public function insertData($table, $targets, $values)
+    {
+        $entry = str_replace(':', '', $targets);
+
+        $request = <<<EOT
+            INSERT INTO $table ($entry) VALUES ($targets)
+        EOT;
+
+        $this->setFetchMode(PDO::FETCH_ASSOC);
+        $response = $this->execute($request, $values);
         return $response;
     }
 
-    public function fetchData($target, $table, $key, $value)
+    public function fetchValue($target, $table, $key, $value)
     {
         $request = <<<EOT
             SELECT $target FROM $table WHERE $key=$value
@@ -34,36 +47,25 @@ Class Erebos extends Core
         return $return;
     }
 
-    public function subscribe()
-    {
+    public function listValues($table){
+        $request = <<<EOT
+            SELECT * FROM $table
+        EOT;
 
+        $this->setFetchMode(PDO::FETCH_ASSOC);
+        $query = $this->fetch($request);
+        $values = array_map(function($var){ return $var['name']; }, $query);
+
+        return $values;
     }
 
-    public function login()
-    {
-
-    }
-
-    public function createFolder($path, $name)
-    {
+    public function createFolder($path, $name){
         $folder = array(
+            "id_user"=>1,
             "path"=>$path,
-            "name"=>$name,
-            "content"=>array(),
-            "size"=>1
+            "name"=>$name
         );
-        return $folder;
-    }
 
-    public function createFile($path, $name, $type)
-    {
-        $file = array(
-            "path"=>$path,
-            "name"=>$name,
-            "type"=>$type,
-            "content"=>"",
-            "size"=>10
-        );
-        return $file;
+        $this->insertData('folders', ':id_user, :path, :name', $folder);
     }
 }
