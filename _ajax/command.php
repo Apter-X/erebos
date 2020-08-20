@@ -1,5 +1,6 @@
 <?php
 require '../core/init.php';
+include_once '../_helpers/functions.php';
 
 if (isset($_POST['isOn']) && !empty($_POST['isOn'])) {
     $commands = array();
