@@ -1,5 +1,4 @@
 <?php
-    include_once '../_helpers/functions.php';
     require 'core/init.php'; 
 ?>
 
