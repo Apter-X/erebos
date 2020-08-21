@@ -6,7 +6,7 @@ class Command extends Desktop
         $request = explode(" ", $command);
 
         if($request[0] == "debug"){
-            $this->debug($request[1], $request[2]);
+            $this->debug($request[1], $request[2], $request[3], $request[4]);
         }
 
         elseif($request[0] == "mkdir") { 
@@ -36,12 +36,12 @@ class Command extends Desktop
             }
         }
 
-        elseif($request[0] == "list") {
-            if(count($request) == 2){
-                $return = $this->listName($request[1]);
+        elseif($request[0] == "object") {
+            if(count($request) > 0){
+                $return = $this->fetchObject($request[1], $request[2], $request[3]);
                 return  json_encode($return);
             } else {
-                return '- Invalid Parameter! At least 1 parameter are required, "list $table"';
+                return '- Invalid Parameter! At least 3 parameter are required, "object $table $refKey $refValue"';
             }
         }
 

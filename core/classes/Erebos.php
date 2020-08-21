@@ -1,11 +1,23 @@
 <?php
 Class Erebos extends Core 
 {
-    public function debug($target, $table)
+    public function debug($target, $table, $refKey = NULL, $refValue = NULL)
     {
-        $sql = <<<EOT
-            SELECT $target FROM $table
-        EOT;
+        if(empty($refKey) && empty($refValue)){
+            $sql = <<<EOT
+                SELECT $target FROM $table
+            EOT;
+        } elseif((intval($refValue) > 0)){
+            $int_value = intval($refValue);
+
+            $sql = <<<EOT
+                SELECT * FROM $table WHERE $refKey=$int_value
+            EOT;
+        } else {
+            $sql = <<<EOT
+                SELECT * FROM $table WHERE $refKey='$refValue'
+            EOT;
+        }
 
         $this->setFetchMode(PDO::FETCH_OBJ);
         $values = $this->fetch($sql);
@@ -13,7 +25,6 @@ Class Erebos extends Core
         echo "<div class=\"col\"><pre>";
             print_r($values);
         echo "</pre></div>";
-        // return $values;
     }
 
     public function insertData($table, $targets, $values)
@@ -52,15 +63,22 @@ Class Erebos extends Core
         return $return;
     }
 
-    public function listName($table){
-        $sql = <<<EOT
-            SELECT * FROM $table
-        EOT;
+    public function fetchObject($table, $refKey, $refValue){
+        if((intval($refValue) > 0)){
+            $int_value = intval($refValue);
+            $sql = <<<EOT
+                SELECT * FROM $table WHERE $refKey=$int_value
+            EOT;
+        } else {
+            $sql = <<<EOT
+                SELECT * FROM $table WHERE $refKey='$refValue'
+            EOT;
+        }
 
         $this->setFetchMode(PDO::FETCH_ASSOC);
         $query = $this->fetch($sql);
 
-        $values = array_map(function($var){ return $var['name']; }, $query);
+        $values = $query;
 
         return $values;
     }
@@ -75,7 +93,7 @@ Class Erebos extends Core
             EOT;
         } else {
             $sql = <<<EOT
-                DELETE FROM $table WHERE $refKey='$refValue';
+                DELETE FROM $table WHERE $refKey='$refValue'
             EOT;
         }
 
