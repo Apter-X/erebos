@@ -13,39 +13,30 @@ class Command extends Desktop
             }
         }
 
-        elseif($request[0] == "mkdir") { 
-            if(count($request) == 3){
-                $return = $this->createFolder($request[1], $request[2]);
-                return "- Create folder! Path: $request[1] - Name: $request[2] | $return.";
+        elseif($request[0] == "update") {
+            if(count($request) == 6){
+                $return = $this->updateValue($request[1], $request[2], $request[3], $request[4], $request[5]);
+                return $return;
             } else {
-                return '- Invalid Parameter! At least 2 parameters are required folder, "mkdir $path $name."';
+                return '- Invalid Parameter! At least 4 parameters are required, "update $table $key $newValue $refKey $refValue".';
             }
         }
 
-        elseif($request[0] == "touch") {
+        elseif($request[0] == "addColumn") {
             if(count($request) == 5){
-                $return = $this->createFile($request[1], $request[2], $request[3], $request[4]);
-                return "- Create file! Path: $request[1] - Name: $request[2]. $return.";
+                $return = $this->addColumn($request[1], $request[2], $request[3], $request[4]);
+                return $return;
             } else {
-                return '- Invalid Parameter! At least 4 parameters are required folder, "touch $path $name $format $link."';
+                return '- Invalid Parameter! At least 4 parameters are required, "addColumn $table $name $type $after".';
             }
         }
 
         elseif($request[0] == "delete") {
             if(count($request) == 4){
                 $return = $this->deleteRow($request[1], $request[2], $request[3]);
-                return "- Remove file! From: $request[1] - Name: $request[3] | $return";
+                return $return;
             } else {
                 return '- Invalid Parameter! At least 3 parameters are required folder, "delete $table $refKey $refValue."';
-            }
-        }
-
-        elseif($request[0] == "object") {
-            if(count($request) > 0){
-                $return = $this->fetchObject($request[1], $request[2], $request[3]);
-                return  json_encode($return);
-            } else {
-                return '- Invalid Parameter! At least 3 parameter are required, "object $table $refKey $refValue"';
             }
         }
 
@@ -58,12 +49,30 @@ class Command extends Desktop
             }
         }
 
-        elseif($request[0] == "addColumn") {
-            if(count($request) == 5){
-                $return = $this->addColumn($request[1], $request[2], $request[3], $request[4]);
-                return "- Database add column! From: $request[1] - Name: $request[3] | $return";
+        elseif($request[0] == "mkdir") { 
+            if(count($request) == 3){
+                $return = $this->createFolder($request[1], $request[2]);
+                return $return;
             } else {
-                return '- Invalid Parameter! At least 4 parameters are required, "addColumn $table $name $type $after".';
+                return '- Invalid Parameter! At least 2 parameters are required folder, "mkdir $path $name."';
+            }
+        }
+
+        elseif($request[0] == "touch") {
+            if(count($request) == 5){
+                $return = $this->createFile($request[1], $request[2], $request[3], $request[4]);
+                return $return;
+            } else {
+                return '- Invalid Parameter! At least 4 parameters are required folder, "touch $path $name $format $link."';
+            }
+        }
+
+        elseif($request[0] == "object") {
+            if(count($request) > 0){
+                $return = $this->fetchObject($request[1], $request[2], $request[3]);
+                return  json_encode($return);
+            } else {
+                return '- Invalid Parameter! At least 3 parameter are required, "object $table $refKey $refValue"';
             }
         }
 

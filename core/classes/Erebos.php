@@ -7,12 +7,6 @@ Class Erebos extends Core
             $sql = <<<EOT
                 SELECT $target FROM $table
             EOT;
-        } elseif((intval($refValue) > 0)){
-            $int_value = intval($refValue);
-
-            $sql = <<<EOT
-                SELECT * FROM $table WHERE $refKey=$int_value
-            EOT;
         } else {
             $sql = <<<EOT
                 SELECT * FROM $table WHERE $refKey='$refValue'
@@ -27,7 +21,7 @@ Class Erebos extends Core
         echo "</pre></div>";
     }
 
-    public function insertData($table, $targets, $values)
+    public function insertRow($table, $targets, $values)
     {
         $entry = str_replace(':', '', $targets);
 
@@ -36,69 +30,55 @@ Class Erebos extends Core
         EOT;
 
         $return = $this->execute($sql, $values);
-        return $return;
+        return $sql . " = " . $return;
+    }
+
+    public function updateValue($table, $key, $newValue, $refKey, $refValue)
+    {
+        $sql = <<<EOT
+            UPDATE $table SET $key='$newValue' WHERE $refKey=$refValue
+        EOT;
+
+        $return = $this->execute($sql);
+        return $sql . " = " . $return;
     }
 
     public function fetchValue($target, $table, $refKey, $refValue)
     {
-        $int = intval($refValue);
 
-        //If the value are int
-        if($int > 0 ){
-            $int_value = intval($refValue);
+        $sql = <<<EOT
+            SELECT $target FROM $table WHERE $refKey='$refValue'
+        EOT;
 
-            $sql = <<<EOT
-                SELECT $target FROM $table WHERE $refKey=$int_value
-            EOT;
-        } else {
-            $sql = <<<EOT
-                SELECT $target FROM $table WHERE $refKey='$refValue'
-            EOT;
-        }
 
         $this->setFetchMode(PDO::FETCH_ASSOC);
         $response = $this->fetch($sql);
 
         $return = implode(array_values($response[0])); //Remove the key
-        return $return;
+        return $sql . " = " . $return;
     }
 
     public function fetchObject($table, $refKey, $refValue){
-        if((intval($refValue) > 0)){
-            $int_value = intval($refValue);
-            $sql = <<<EOT
-                SELECT * FROM $table WHERE $refKey=$int_value
-            EOT;
-        } else {
-            $sql = <<<EOT
-                SELECT * FROM $table WHERE $refKey='$refValue'
-            EOT;
-        }
+
+        $sql = <<<EOT
+            SELECT * FROM $table WHERE $refKey='$refValue'
+        EOT;
 
         $this->setFetchMode(PDO::FETCH_ASSOC);
         $query = $this->fetch($sql);
 
         $values = $query;
 
-        return $values;
+        return $sql . " = " . $values;
     }
 
     public function deleteRow($table, $refKey, $refValue){
-        //If the value are int or not
-        if((intval($refValue) > 0)){
-            $int_value = intval($refValue);
-
-            $sql = <<<EOT
-                DELETE FROM $table WHERE $refKey=$int_value
-            EOT;
-        } else {
-            $sql = <<<EOT
-                DELETE FROM $table WHERE $refKey='$refValue'
-            EOT;
-        }
+        $sql = <<<EOT
+            DELETE FROM $table WHERE $refKey='$refValue'
+        EOT;
 
         $return = $this->execute($sql);
-        return $return;
+        return $sql . " = " . $return;
     }
 
     public function addColumn($table, $name, $type, $after){  
@@ -107,6 +87,6 @@ Class Erebos extends Core
         EOT;
 
         $return = $this->execute($sql);
-        return $return;
+        return $sql . " = " . $return;
     }
 }

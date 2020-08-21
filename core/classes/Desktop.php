@@ -7,7 +7,7 @@ Class Desktop extends Erebos
             "name"=>$name
         );
 
-        $return = $this->insertData('folders', ':path, :name', $folder);
+        $return = $this->insertRow('folders', ':path, :name', $folder);
         return $return;
     }
 
@@ -19,7 +19,7 @@ Class Desktop extends Erebos
             "link"=>$link
         );
 
-        $return = $this->insertData('files', ':path, :name, :format, :link', $file);
+        $return = $this->insertRow('files', ':path, :name, :format, :link', $file);
         return $return;
     }
 }

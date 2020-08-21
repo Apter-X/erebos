@@ -34,7 +34,7 @@ Command.request = function(command)
             {
                 output = [];
                 $('.msg-group').html(output);
-                // Command.request(); //Leave the welcome message when clear
+                Command.request(); //Leave the welcome message when clear
             } 
             else 
             {
