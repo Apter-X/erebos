@@ -3,68 +3,91 @@ Class Erebos extends Core
 {
     public function debug($table)
     {
-        $request = <<<EOT
+        $sql = <<<EOT
             SELECT * FROM $table
         EOT;
 
-        $this->setFetchMode(PDO::FETCH_ASSOC);
-        $values = $this->fetch($request);
-
+        $this->setFetchMode(PDO::FETCH_OBJ);
+        $values = $this->fetch($sql);
+        
         echo "<div class=\"col\"><pre>";
-        var_dump($values);
+            print_r($values);
         echo "</pre></div>";
     }
 
-    public function login()
-    {
-
-    }
-
-    public function insertData($table, $targets, $object)
+    public function insertData($table, $targets, $values)
     {
         $entry = str_replace(':', '', $targets);
 
-        $request = <<<EOT
+        $sql = <<<EOT
             INSERT INTO $table ($entry) VALUES ($targets)
         EOT;
 
-        $this->setFetchMode(PDO::FETCH_ASSOC);
-        $response = $this->execute($request, $values);
-    }
-
-    public function fetchValue($target, $table, $key, $value)
-    {
-        $request = <<<EOT
-            SELECT $target FROM $table WHERE $key=$value
-        EOT;
-
-        $this->setFetchMode(PDO::FETCH_ASSOC);
-        $response = $this->fetch($request);
-
-        $return = implode(array_values($response[0]));
+        $return = $this->execute($sql, $values);
         return $return;
     }
 
-    public function listValues($table){
-        $request = <<<EOT
+    public function fetchValue($target, $table, $refKey, $refValue)
+    {
+        $int = intval($refValue);
+
+        //If the value are int
+        if($int > 0 ){
+            $int_value = intval($refValue);
+
+            $sql = <<<EOT
+                SELECT $target FROM $table WHERE $refKey=$int_value
+            EOT;
+        } else {
+            $sql = <<<EOT
+                SELECT $target FROM $table WHERE $refKey='$refValue'
+            EOT;
+        }
+
+        $this->setFetchMode(PDO::FETCH_ASSOC);
+        $response = $this->fetch($sql);
+
+        $return = implode(array_values($response[0]));
+        return $return . ": " . json_encode($response);
+    }
+
+    public function listName($table){
+        $sql = <<<EOT
             SELECT * FROM $table
         EOT;
 
         $this->setFetchMode(PDO::FETCH_ASSOC);
-        $query = $this->fetch($request);
+        $query = $this->fetch($sql);
 
-        $values = array_map(function($var){ return $var['ip']; }, $query);
+        $values = array_map(function($var){ return $var['name']; }, $query);
 
         return $values;
     }
 
-    public function createFolder($path, $name){
-        $folder = array(
-            "id_user"=>1,
-            "path"=>$path,
-            "name"=>$name
-        );
+    public function deleteRow($table, $refKey, $refValue){
+        //If the value are int or not
+        if((intval($refValue) > 0)){
+            $int_value = intval($refValue);
 
-        $this->insertData('folders', ':id_user, :path, :name', $folder);
+            $sql = <<<EOT
+                DELETE FROM $table WHERE $refKey=$int_value
+            EOT;
+        } else {
+            $sql = <<<EOT
+                DELETE FROM $table WHERE $refKey='$refValue';
+            EOT;
+        }
+
+        $return = $this->execute($sql);
+        return $return;
+    }
+
+    public function addColumn($table, $name, $type, $after){  
+        $sql = <<<EOT
+            ALTER TABLE $table ADD $name $type NOT NULL AFTER $after;
+        EOT;
+
+        $return = $this->execute($sql);
+        return $return;
     }
 }
