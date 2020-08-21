@@ -6,7 +6,11 @@ class Command extends Desktop
         $request = explode(" ", $command);
 
         if($request[0] == "debug"){
-            $this->debug($request[1], $request[2], $request[3], $request[4]);
+            if(!empty($request[3]) && !empty($request[4])){
+                $this->debug($request[1], $request[2], $request[3], $request[4]);
+            } else {
+                $this->debug($request[1], $request[2]);
+            }
         }
 
         elseif($request[0] == "mkdir") { 
