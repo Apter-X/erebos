@@ -1,10 +1,10 @@
 <?php
 Class Erebos extends Core 
 {
-    public function debug($table)
+    public function debug($target, $table)
     {
         $sql = <<<EOT
-            SELECT * FROM $table
+            SELECT $target FROM $table
         EOT;
 
         $this->setFetchMode(PDO::FETCH_OBJ);
@@ -13,6 +13,7 @@ Class Erebos extends Core
         echo "<div class=\"col\"><pre>";
             print_r($values);
         echo "</pre></div>";
+        // return $values;
     }
 
     public function insertData($table, $targets, $values)
@@ -47,8 +48,8 @@ Class Erebos extends Core
         $this->setFetchMode(PDO::FETCH_ASSOC);
         $response = $this->fetch($sql);
 
-        $return = implode(array_values($response[0]));
-        return $return . ": " . json_encode($response);
+        $return = implode(array_values($response[0])); //Remove the key
+        return $return;
     }
 
     public function listName($table){

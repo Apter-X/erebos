@@ -27,9 +27,11 @@ ___________             ___.
         $command = str_secure($_POST['command']);
         $arr = explode(' ', $command);
 
+        $cmd = new Command;
+
         if($arr[0] != "debug"){
             array_push($commands, $command);
-            array_push($commands, command($command));
+            array_push($commands, $cmd->post($command));
             
             foreach ($commands as $command) 
             {
@@ -43,7 +45,7 @@ ___________             ___.
             } 
         }
         else {
-            array_push($commands, command($command));
+            array_push($commands, $cmd->post($command));
         }
     }
 }
