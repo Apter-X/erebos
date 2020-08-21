@@ -9,5 +9,6 @@ define("DB_PASS", "");
 
 include_once 'classes/Core.php';
 include_once 'classes/Erebos.php';
+include_once 'classes/Desktop.php';
 
 include_once 'commands/commands.php';
