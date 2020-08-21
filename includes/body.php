@@ -7,6 +7,6 @@
     </div>
     
     <div class="input-group">
-        <button class="before-input" disabled>></button>
+        <button class="before-input" disabled>/</button>
         <input id="input-box" class="form-control" rows="1" placeholder="Command Line" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" autofocus>
     </div>  

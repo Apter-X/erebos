@@ -1,5 +1,6 @@
 <?php
-    require 'core/init.php'; 
+    require 'core/init.php';
+    include_once '_helpers/functions.php';
 ?>
 
 <!DOCTYPE html>
@@ -9,7 +10,6 @@
     </head>
     <body>
         <?php
-            
         ?>
 
         <?php include_once 'includes/body.php' ?>

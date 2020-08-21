@@ -25,7 +25,7 @@ ___________             ___.
     else if(isset($_POST['command']) && !empty('command')) 
     {
         $command = str_secure($_POST['command']);
-        $arr = explode(' ',trim($command));
+        $arr = explode(' ', $command);
 
         if($arr[0] != "debug"){
             array_push($commands, $command);
