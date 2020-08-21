@@ -18,7 +18,7 @@ class Command extends Desktop
                 $return = $this->updateValue($request[1], $request[2], $request[3], $request[4], $request[5]);
                 return $return;
             } else {
-                return '- Invalid Parameter! At least 4 parameters are required, "update $table $key $newValue $refKey $refValue".';
+                return '- At least 4 parameters are required, "update $table $key $newValue $refKey $refValue".';
             }
         }
 
@@ -27,7 +27,7 @@ class Command extends Desktop
                 $return = $this->addColumn($request[1], $request[2], $request[3], $request[4]);
                 return $return;
             } else {
-                return '- Invalid Parameter! At least 4 parameters are required, "addColumn $table $name $type $after".';
+                return '- At least 4 parameters are required, "addColumn $table $name $type $after".';
             }
         }
 
@@ -36,7 +36,7 @@ class Command extends Desktop
                 $return = $this->deleteRow($request[1], $request[2], $request[3]);
                 return $return;
             } else {
-                return '- Invalid Parameter! At least 3 parameters are required folder, "delete $table $refKey $refValue."';
+                return '- At least 3 parameters are required folder, "delete $table $refKey $refValue."';
             }
         }
 
@@ -45,7 +45,7 @@ class Command extends Desktop
                 $return = $this->fetchValue($request[1], $request[2], $request[3], $request[4]);
                 return $return;
             } else {
-                return '- Invalid Parameter! At least 4 parameters are required, "fetch $key $table $refKey $refValue".';
+                return '- At least 4 parameters are required, "fetch $key $table $refKey $refValue".';
             }
         }
 
@@ -54,7 +54,7 @@ class Command extends Desktop
                 $return = $this->createFolder($request[1], $request[2]);
                 return $return;
             } else {
-                return '- Invalid Parameter! At least 2 parameters are required folder, "mkdir $path $name."';
+                return '- At least 2 parameters are required folder, "mkdir $path $name."';
             }
         }
 
@@ -63,7 +63,7 @@ class Command extends Desktop
                 $return = $this->createFile($request[1], $request[2], $request[3], $request[4]);
                 return $return;
             } else {
-                return '- Invalid Parameter! At least 4 parameters are required folder, "touch $path $name $format $link."';
+                return '- At least 4 parameters are required folder, "touch $path $name $format $link."';
             }
         }
 
@@ -72,7 +72,7 @@ class Command extends Desktop
                 $return = $this->fetchObject($request[1], $request[2], $request[3]);
                 return  json_encode($return);
             } else {
-                return '- Invalid Parameter! At least 3 parameter are required, "object $table $refKey $refValue"';
+                return '- At least 3 parameter are required, "object $table $refKey $refValue"';
             }
         }
 
