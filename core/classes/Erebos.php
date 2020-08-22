@@ -1,6 +1,19 @@
 <?php
+/**
+* Class Erebos
+* This PHP class regroup basic methods of the program
+*
+*/
 Class Erebos extends Core 
 {
+    /**
+    * Debug the database by fetching data on screen
+    * @param string $target key
+    * @param string $selected table
+    * @param string|null $reference key
+    * @param string|null $reference value
+    * @return void
+    */
     public function debug($target, $table, $refKey = NULL, $refValue = NULL)
     {
         if(empty($refKey) && empty($refValue)){
@@ -21,6 +34,13 @@ Class Erebos extends Core
         echo "</pre></div>";
     }
 
+    /**
+    * Add a row of data 
+    * @param string $selected table
+    * @param string $reference key
+    * @param string $row values
+    * @return requestSQL+PDOStatement
+    */
     public function insertRow($table, $targets, $values)
     {
         $entry = str_replace(':', '', $targets);
@@ -33,6 +53,15 @@ Class Erebos extends Core
         return $sql . " | " . $return;
     }
 
+    /**
+    * Update a unique value
+    * @param string $selected table
+    * @param string $value key
+    * @param string $new value
+    * @param string $reference key
+    * @param string|int $reference value
+    * @return requestSQL+PDOStatement
+    */
     public function updateValue($table, $key, $newValue, $refKey, $refValue)
     {
         $sql = <<<EOT
@@ -43,6 +72,14 @@ Class Erebos extends Core
         return $sql . " | " . $return;
     }
 
+    /**
+    * Fetch a unique value
+    * @param string $target key
+    * @param string $selected table
+    * @param string $reference key
+    * @param string|int $reference value
+    * @return requestSQL+PDOStatement
+    */
     public function fetchValue($target, $table, $refKey, $refValue)
     {
 
@@ -58,6 +95,13 @@ Class Erebos extends Core
         return $sql . " | " . $return;
     }
 
+    /**
+    * Fetch a raw of data
+    * @param string $selected table
+    * @param string $reference key
+    * @param string|int $reference value
+    * @return requestSQL+PDOStatement
+    */
     public function fetchObject($table, $refKey, $refValue){
 
         $sql = <<<EOT
@@ -72,6 +116,13 @@ Class Erebos extends Core
         return $sql . " | " . $values;
     }
 
+    /**
+    * Delete a raw of data
+    * @param string $selected table
+    * @param string $reference key
+    * @param string|int $reference value
+    * @return requestSQL+PDOStatement
+    */
     public function deleteRow($table, $refKey, $refValue){
         $sql = <<<EOT
             DELETE FROM $table WHERE $refKey='$refValue'
@@ -81,6 +132,15 @@ Class Erebos extends Core
         return $sql . " | " . $return;
     }
 
+    /**
+    * Add column
+    * (Need to add the size value as a parameter)
+    * @param string $selected table
+    * @param string $name new column
+    * @param string $type data
+    * @param string $agency
+    * @return requestSQL+PDOStatement
+    */
     public function addColumn($table, $name, $type, $after){  
         $sql = <<<EOT
             ALTER TABLE $table ADD $name $type NOT NULL AFTER $after;
