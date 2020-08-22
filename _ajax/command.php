@@ -44,7 +44,11 @@ ___________             ___.
         $command = str_secure($_POST['command']);
         $arr = explode(' ', $command);
 
-        if($arr[0] != "debug"){
+        if($arr[0] == "vim"){
+            return;
+        }
+
+        else if($arr[0] != "debug"){
             array_push($commands, $command);
             array_push($commands, $cmd->post($command));
             
@@ -57,9 +61,8 @@ ___________             ___.
                     </p>
                 </div>
                 <?php
-            } 
-        }
-        else {
+            }
+        } else {
             array_push($commands, $cmd->post($command));
         }
     }

@@ -62,33 +62,32 @@ Command.vim = function(content, refKey, refValue) {
 Command.entry = $('.input-group .form-control');
 Command.entry.bind('keydown',function(e){
     thisValue = $(this).val();
+    splitValue = thisValue.split(' ');
 
     if(e.keyCode == 13 && thisValue != ''){
         e.preventDefault();
 
-        if(thisValue == 'clear'){
+        if(splitValue[0] == 'clear'){
             output = [];
             $('.msg-group').html(output);
             Command.entry.val('');
             // Command.request(); //Leave the welcome message when clear
         }
 
-        else if(thisValue == 'vim') {
+        else if(splitValue[0] == 'vim') {
             $('.msg-group').replaceWith('<textarea id="vim" class="msg-group"></textarea>');
             $('#vim').focus();
             $("#vim").css("background-color", "#152238");
             $("#vim").css('color', 'white');
             $("#vim").css("resize",'none');
             $("#vim").val('');
+            Command.entry.val('');
             
             $('.msg-group').bind('keydown',function(e){
                 if(e.keyCode == 13 && $(this).val() != '' && e.shiftKey == true){
-                    var command = thisValue.split(' ');
                     var content = $(this).val();
 
-                    console.log(content + command[1] + command[2])
-
-                    Command.vim(content, command[1], command[2]);
+                    Command.vim(content, splitValue[1], splitValue[2]);
                     Command.entry.val('');
                     $('.msg-group').html(output);
                 } 
