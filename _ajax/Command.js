@@ -15,10 +15,9 @@ Command.request = function(command)
             entry = Command.entry.val();
             Command.entry.val('');
 
-            var spaceChar = entry.indexOf(" ");
-            var cmd = entry.substring(0,spaceChar);
+            var cmd = entry.split(' ');
 
-            if(cmd == "debug"){
+            if(cmd[0] == "debug"){
                 output.push(`
                 <div class="card-body" id="padding">
                     <p class="card-text float-left">
@@ -41,36 +40,21 @@ Command.request = function(command)
     })
 };
 
-Command.vim = function() {
-    $('.msg-group').replaceWith('<textarea id="vim" class="msg-group"></textarea>');
-    $('#vim').focus();
-    $("#vim").css("background-color", "#152238");
-    $("#vim").css('color', 'white');
-    $("#vim").css("resize",'none');
-    $("#vim").val('');
+Command.vim = function(content, refKey, refValue) {
+    $.ajax({
+        type : 'POST',
+        url : '_ajax/command.php',
+        data: {
+            isTxt: true,
+            command: "vim" + " " + content + " " + refKey + " " + refValue
+        },
+        success : function(response){
+            $('.msg-group').replaceWith('<div class="msg-group"></div>');
+            $('.input-group .form-control').focus();
+            output.push(response);
 
-    $('.msg-group').bind('keydown',function(e){
-        if(e.keyCode == 13 && $(this).val() != '' && e.shiftKey == true){
-            e.preventDefault();
-            val = $(this).val()
-
-            $.ajax({
-                type : 'POST',
-                url : '_ajax/command.php',
-                data: {
-                    isTxt: true,
-                    command: "vim" + " " + val + " " + "name" + " " + "doc3";
-                },
-                success : function(response){
-                    console.log(response);
-                    $('.msg-group').replaceWith('<div class="msg-group"></div>');
-                    $('.input-group .form-control').focus();
-                    output.push(response);
-
-                    $('.msg-group').html(output);
-                    $('.msg-group').animate({ scrollTop: 9999*9999 /* Temporary Solution */ }, 'fast');
-                }
-            });
+            $('.msg-group').html(output);
+            $('.msg-group').animate({ scrollTop: 9999*9999 /* Temporary Solution */ }, 'fast');
         }
     });
 }
@@ -88,10 +72,27 @@ Command.entry.bind('keydown',function(e){
             Command.entry.val('');
             // Command.request(); //Leave the welcome message when clear
         }
+
         else if(thisValue == 'vim') {
-            Command.vim();
-            Command.entry.val('');
-            $('.msg-group').html(output);
+            $('.msg-group').replaceWith('<textarea id="vim" class="msg-group"></textarea>');
+            $('#vim').focus();
+            $("#vim").css("background-color", "#152238");
+            $("#vim").css('color', 'white');
+            $("#vim").css("resize",'none');
+            $("#vim").val('');
+            
+            $('.msg-group').bind('keydown',function(e){
+                if(e.keyCode == 13 && $(this).val() != '' && e.shiftKey == true){
+                    var command = thisValue.split(' ');
+                    var content = $(this).val();
+
+                    console.log(content + command[1] + command[2])
+
+                    Command.vim(content, command[1], command[2]);
+                    Command.entry.val('');
+                    $('.msg-group').html(output);
+                } 
+            });
         } else {
             Command.request(thisValue);
         }
