@@ -30,17 +30,17 @@ Class Erebos extends Core
         EOT;
 
         $return = $this->execute($sql, $values);
-        return $sql . " = " . $return;
+        return $sql . " | " . $return;
     }
 
     public function updateValue($table, $key, $newValue, $refKey, $refValue)
     {
         $sql = <<<EOT
-            UPDATE $table SET $key='$newValue' WHERE $refKey=$refValue
+            UPDATE $table SET $key='$newValue' WHERE $refKey='$refValue'
         EOT;
 
         $return = $this->execute($sql);
-        return $sql . " = " . $return;
+        return $sql . " | " . $return;
     }
 
     public function fetchValue($target, $table, $refKey, $refValue)
@@ -55,7 +55,7 @@ Class Erebos extends Core
         $response = $this->fetch($sql);
 
         $return = implode(array_values($response[0])); //Remove the key
-        return $sql . " = " . $return;
+        return $sql . " | " . $return;
     }
 
     public function fetchObject($table, $refKey, $refValue){
@@ -69,7 +69,7 @@ Class Erebos extends Core
 
         $values = $query;
 
-        return $sql . " = " . $values;
+        return $sql . " | " . $values;
     }
 
     public function deleteRow($table, $refKey, $refValue){
@@ -78,7 +78,7 @@ Class Erebos extends Core
         EOT;
 
         $return = $this->execute($sql);
-        return $sql . " = " . $return;
+        return $sql . " | " . $return;
     }
 
     public function addColumn($table, $name, $type, $after){  
@@ -87,6 +87,6 @@ Class Erebos extends Core
         EOT;
 
         $return = $this->execute($sql);
-        return $sql . " = " . $return;
+        return $sql . " | " . $return;
     }
 }

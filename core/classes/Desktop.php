@@ -1,7 +1,8 @@
 <?php
 Class Desktop extends Erebos 
 {
-    public function createFolder($path, $name){
+    public function createFolder($path, $name)
+    {
         $folder = array(
             "path"=>$path,
             "name"=>$name
@@ -11,7 +12,8 @@ Class Desktop extends Erebos
         return $return;
     }
 
-    public function createFile($path, $name, $format, $link){
+    public function createFile($path, $name, $format, $link)
+    {
         $file = array(
             "path"=>$path,
             "name"=>$name,
@@ -20,6 +22,12 @@ Class Desktop extends Erebos
         );
 
         $return = $this->insertRow('files', ':path, :name, :format, :link', $file);
+        return $return;
+    }
+
+    public function editContent($newValue, $refKey, $refValue)
+    {
+        $return = $this->updateValue("files", "content", $newValue, $refKey, $refValue);
         return $return;
     }
 }

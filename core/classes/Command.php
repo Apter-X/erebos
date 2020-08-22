@@ -13,6 +13,15 @@ class Command extends Desktop
             }
         }
 
+        elseif($request[0] == "vim") {
+            if(count($request) == 4){
+                $return = $this->editContent($request[1], $request[2], $request[3]);
+                return $return;
+            } else {
+                return '- At least 3 parameters are required, "vim $newValue $refKey $refValue".';
+            }
+        }
+
         elseif($request[0] == "update") {
             if(count($request) == 6){
                 $return = $this->updateValue($request[1], $request[2], $request[3], $request[4], $request[5]);

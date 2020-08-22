@@ -2,9 +2,16 @@
 require '../core/init.php';
 include_once '../_helpers/functions.php';
 
-if (isset($_POST['isOn']) && !empty($_POST['isOn'])) {
-    $commands = array();
+$cmd = new Command;
+$commands = array();
 
+if (isset($_POST['isTxt']) && !empty($_POST['isTxt'])){
+    $command = $_POST['command'];
+    array_push($commands, $cmd->post($command));
+    print_r($cmd->post($command));
+}
+
+if (isset($_POST['isOn']) && !empty($_POST['isOn'])) {
     if(empty($_POST['command']))
     {
         ?>
@@ -26,8 +33,6 @@ ___________             ___.
     {
         $command = str_secure($_POST['command']);
         $arr = explode(' ', $command);
-
-        $cmd = new Command;
 
         if($arr[0] != "debug"){
             array_push($commands, $command);

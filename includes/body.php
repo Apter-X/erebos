@@ -1,6 +1,6 @@
 
     <div class="debug float-right"></div>
-    <div class="msg-group center">
+    <div class="msg-group">
         <!-- <div class="card-body">
             <p class="card-text float-left">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis, minus illo ea, modi rerum molestias similique eos <a href="#">voluptates</a> nisi facilis accusamus odit possimus.</p>
         </div> -->
