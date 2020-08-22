@@ -75,7 +75,7 @@ Command.entry.bind('keydown',function(e){
         }
 
         else if(splitValue[0] == 'vim') {
-            $('.msg-group').replaceWith('<textarea id="vim" class="msg-group"></textarea>');
+            $('.msg-group').replaceWith('<textarea id="vim" class="msg-group" placeholder="<Shift + Enter> to save or <Ctrl + Enter> to cancel"></textarea>');
             $('#vim').focus();
             $("#vim").css("background-color", "#152238");
             $("#vim").css('color', 'white');
@@ -84,13 +84,20 @@ Command.entry.bind('keydown',function(e){
             Command.entry.val('');
             
             $('.msg-group').bind('keydown',function(e){
-                if(e.keyCode == 13 && $(this).val() != '' && e.shiftKey == true){
+                if(e.keyCode == 13 && e.shiftKey == true){
                     var content = $(this).val();
 
                     Command.vim(content, splitValue[1], splitValue[2]);
                     Command.entry.val('');
                     $('.msg-group').html(output);
-                } 
+                }
+                else if(e.keyCode == 13 && e.ctrlKey == true){
+                    $('.msg-group').replaceWith('<div class="msg-group"></div>');
+                    $('.input-group .form-control').focus();
+
+                    $('.msg-group').html(output);
+                    $('.msg-group').animate({ scrollTop: 9999*9999 /* Temporary Solution */ }, 'fast');
+                }
             });
         } else {
             Command.request(thisValue);
