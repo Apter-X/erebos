@@ -87,7 +87,7 @@ Command.entry.bind('keydown',function(e){
                 if(e.keyCode == 13 && e.shiftKey == true){
                     var content = $(this).val();
 
-                    Command.vim(content, splitValue[1], splitValue[2]);
+                    Command.vim(content.replace(/\s/g,''), splitValue[1], splitValue[2]);
                     Command.entry.val('');
                     $('.msg-group').html(output);
                 }
