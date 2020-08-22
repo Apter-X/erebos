@@ -8,7 +8,17 @@ $commands = array();
 if (isset($_POST['isTxt']) && !empty($_POST['isTxt'])){
     $command = $_POST['command'];
     array_push($commands, $cmd->post($command));
-    print_r($cmd->post($command));
+    
+    foreach ($commands as $command) 
+    {
+        ?>
+        <div class="card-body" id="padding">
+            <p class="card-text float-left">
+                <?= $command; ?>
+            </p>
+        </div>
+        <?php
+    } 
 }
 
 if (isset($_POST['isOn']) && !empty($_POST['isOn'])) {
