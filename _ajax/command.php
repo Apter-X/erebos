@@ -39,7 +39,7 @@ ___________             ___.
         <?php
     }
 
-    else if(isset($_POST['command']) && !empty('command')) 
+    else if(isset($_POST['command']) && !empty($_POST['command'])) 
     {
         $command = str_secure($_POST['command']);
         $arr = explode(' ', $command);
