@@ -78,21 +78,19 @@ Class Erebos extends Core
     * @param string $selected table
     * @param string $reference key
     * @param string|int $reference value
-    * @return requestSQL+PDOStatement
+    * @return PDOStatement
     */
     public function fetchValue($target, $table, $refKey, $refValue)
     {
-
         $sql = <<<EOT
             SELECT $target FROM $table WHERE $refKey='$refValue'
         EOT;
-
 
         $this->setFetchMode(PDO::FETCH_ASSOC);
         $response = $this->fetch($sql);
 
         $return = implode(array_values($response[0])); //Remove the key
-        return $sql . " | " . $return;
+        return $return;
     }
 
     /**
@@ -145,6 +143,22 @@ Class Erebos extends Core
         $sql = <<<EOT
             ALTER TABLE $table ADD $name $type NOT NULL AFTER $after;
         EOT;
+
+        $return = $this->execute($sql);
+        return $sql . " | " . $return;
+    }
+
+     /**
+    * Delete column
+    * @param string $selected table
+    * @param string $name new column
+    * @param string $type data
+    * @return requestSQL+PDOStatement
+    */
+    public function deleteColumn($table, $name, $type){  
+        $sql = <<<EOT
+            
+        EOT; // new request to code
 
         $return = $this->execute($sql);
         return $sql . " | " . $return;

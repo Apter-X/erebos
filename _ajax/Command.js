@@ -75,14 +75,28 @@ Command.entry.bind('keydown',function(e){
         }
 
         else if(splitValue[0] == 'vim') {
-            $('.msg-group').replaceWith('<textarea id="vim" class="msg-group" placeholder="<Shift + Enter> to save or <Ctrl + Enter> to cancel"></textarea>');
+            $('.msg-group').replaceWith('<textarea id="vim" class="msg-group" placeholder="<Shift + Enter> to save OR <Ctrl + Enter> to cancel." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>');
             $('#vim').focus();
             $("#vim").css("background-color", "#152238");
             $("#vim").css('color', 'white');
             $("#vim").css("resize",'none');
             $("#vim").val('');
             Command.entry.val('');
-            
+
+            $.ajax({
+                type : 'POST',
+                url : '_ajax/command.php',
+                data: {
+                    isFetch: true,
+                    command: "fetch content files " + splitValue[1] + " " + splitValue[2]
+                },
+                success : function(response)
+                {
+                    $("#vim").val(response.replace(/\s/g,''));
+                    console.log(response);
+                }
+            });
+
             $('.msg-group').bind('keydown',function(e){
                 if(e.keyCode == 13 && e.shiftKey == true){
                     var content = $(this).val();
@@ -99,6 +113,7 @@ Command.entry.bind('keydown',function(e){
                     $('.msg-group').animate({ scrollTop: 9999*9999 /* Temporary Solution */ }, 'fast');
                 }
             });
+
         } else {
             Command.request(thisValue);
         }

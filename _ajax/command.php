@@ -18,10 +18,18 @@ if (isset($_POST['isTxt']) && !empty($_POST['isTxt'])){
             </p>
         </div>
         <?php
-    } 
+    }
 }
 
-if (isset($_POST['isOn']) && !empty($_POST['isOn'])) {
+else if (isset($_POST['isFetch']) && !empty($_POST['isFetch'])){
+    $command = $_POST['command'];
+
+    ?>
+        <?= $cmd->post($command); ?>
+    <?php
+}
+
+else if (isset($_POST['isOn']) && !empty($_POST['isOn'])) {
     if(empty($_POST['command']))
     {
         ?>
@@ -44,11 +52,7 @@ ___________             ___.
         $command = str_secure($_POST['command']);
         $arr = explode(' ', $command);
 
-        if($arr[0] == "vim"){
-            return;
-        }
-
-        else if($arr[0] != "debug"){
+        if($arr[0] != "debug"){
             array_push($commands, $command);
             array_push($commands, $cmd->post($command));
             
