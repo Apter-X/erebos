@@ -2,7 +2,12 @@
 /**
 * Class Erebos
 * This PHP class regroup basic methods of the program
-*
+* ___________             ___.                 
+* \_   _____/______   ____\_ |__   ____  ______
+*  |    __)_\_  __ \_/ __ \| __ \ /  _ \/  ___/
+*  |        \|  | \/\  ___/| \_\ (  <_> )___ \
+* /_______  /|__|    \___  >___  /\____/____  >
+*         \/             \/    \/           \/
 */
 Class Erebos extends Core 
 {
@@ -89,7 +94,7 @@ Class Erebos extends Core
         $this->setFetchMode(PDO::FETCH_ASSOC);
         $response = $this->fetch($sql);
 
-        $return = implode(array_values($response[0])); //Remove the key
+        $return = implode(array_values($response[0])); //Remove the array and the key
         return $return;
     }
 
@@ -98,10 +103,9 @@ Class Erebos extends Core
     * @param string $selected table
     * @param string $reference key
     * @param string|int $reference value
-    * @return requestSQL+PDOStatement
+    * @return PDOStatement
     */
     public function fetchObject($table, $refKey, $refValue){
-
         $sql = <<<EOT
             SELECT * FROM $table WHERE $refKey='$refValue'
         EOT;
@@ -110,8 +114,7 @@ Class Erebos extends Core
         $query = $this->fetch($sql);
 
         $values = $query;
-
-        return $sql . " | " . $values;
+        return $values;
     }
 
     /**
@@ -131,7 +134,7 @@ Class Erebos extends Core
     }
 
     /**
-    * Add column
+    * Add column table
     * (Need to add the size value as a parameter)
     * @param string $selected table
     * @param string $name new column
@@ -141,7 +144,7 @@ Class Erebos extends Core
     */
     public function addColumn($table, $name, $type, $after){  
         $sql = <<<EOT
-            ALTER TABLE $table ADD $name $type NOT NULL AFTER $after;
+            ALTER TABLE $table ADD $name $type NOT NULL AFTER $after
         EOT;
 
         $return = $this->execute($sql);
@@ -149,7 +152,7 @@ Class Erebos extends Core
     }
 
      /**
-    * Delete column
+    * Delete column table
     * @param string $selected table
     * @param string $name new column
     * @param string $type data
@@ -158,7 +161,7 @@ Class Erebos extends Core
     public function deleteColumn($table, $name, $type){  
         $sql = <<<EOT
             
-        EOT; // new request to code
+        EOT; //+ new request to code
 
         $return = $this->execute($sql);
         return $sql . " | " . $return;
