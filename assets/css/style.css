@@ -1,5 +1,5 @@
 body {
-    /* font-family: 'VT323', monospace; */
+    font-family: 'VT323', monospace;
 	font-size: 1.25em;
     margin: 0;
     color: #ffffff;
@@ -70,6 +70,6 @@ a{
 	border-radius: 0;
     -webkit-appearance: none;
     font-family: 'VT323', monospace;
-    font-size: 1.25em;
+    font-size: 1em;
     color: #ffffff;
 }

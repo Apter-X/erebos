@@ -1,5 +1,5 @@
 <?php
-require '../core/init.php';
+require '../_core/init.php';
 include_once '../_helpers/functions.php';
 
 $cmd = new Command;
