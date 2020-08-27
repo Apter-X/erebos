@@ -5,8 +5,10 @@ include_once '../_helpers/functions.php';
 $cmd = new Command;
 $commands = array();
 
+//if is a textarea post
 if (isset($_POST['isTxt']) && !empty($_POST['isTxt'])){
-    $command = $_POST['command'];
+
+    $command = str_secure($_POST['command']);
     array_push($commands, $cmd->post($command));
     
     foreach ($commands as $command) 
@@ -21,14 +23,17 @@ if (isset($_POST['isTxt']) && !empty($_POST['isTxt'])){
     }
 }
 
+//if is for fetch an information
 else if (isset($_POST['isFetch']) && !empty($_POST['isFetch'])){
-    $command = $_POST['command'];
+    
+    $command = str_secure($_POST['command']);
 
     ?>
         <?= $cmd->post($command); ?>
     <?php
 }
 
+// determine and execute if there is no command or not or if its about debug
 else if (isset($_POST['isOn']) && !empty($_POST['isOn'])) {
     if(empty($_POST['command']))
     {
@@ -52,7 +57,7 @@ ___________             ___.
         $command = str_secure($_POST['command']);
         $arr = explode(' ', $command);
 
-        if($arr[0] != "debug"){
+        if($arr[0] != "debug"){ //too much conditions
             array_push($commands, $command);
             array_push($commands, $cmd->post($command));
             

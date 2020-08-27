@@ -1,6 +1,21 @@
 var Command = {}; //literal object
 var output = [];
+var cmdStory = [];
+var i = 0;
 
+// fix cdata issue
+Command.cdata = function(string)
+{
+    amp = string.replace(/&amp;/g, '&');
+    lt = amp.replace(/&lt;/g, '<');
+    gt = lt.replace(/&gt;/g, '>');
+
+    return gt;
+}
+
+/*
+* Method using ajax which allowed us to post our commands
+*/
 Command.request = function(command)
 {
     $.ajax({
@@ -17,6 +32,7 @@ Command.request = function(command)
 
             var cmd = entry.split(' ');
 
+            //switch to debug console output
             if(cmd[0] == "debug"){
                 output.push(`
                 <div class="card-body" id="padding">
@@ -28,8 +44,8 @@ Command.request = function(command)
                 $('.debug').html(response);
                 $('.msg-group').html(output);
                 $('.msg-group').animate({ scrollTop: 9999*9999 /* Temporary Solution */ }, 'fast');
-            } 
-            else 
+            }
+            else //standard command 
             {
                 output.push(response);
 
@@ -40,6 +56,9 @@ Command.request = function(command)
     })
 };
 
+/*
+* Prepare command with content
+*/
 Command.vim = function(content, refKey, refValue) {
     $.ajax({
         type : 'POST',
@@ -59,13 +78,32 @@ Command.vim = function(content, refKey, refValue) {
     });
 }
 
+// event listers and executions
 Command.entry = $('.input-group .form-control');
 Command.entry.bind('keydown',function(e){
     thisValue = $(this).val();
     splitValue = thisValue.split(' ');
 
+    // up/down story commands
+    if(e.keyCode == 38){
+        e.preventDefault();
+        if( 1 <= i ){
+            i--;
+            Command.entry.val(cmdStory[i]);
+        }
+    }
+    else if(e.keyCode == 40){
+        e.preventDefault();
+        if(cmdStory[i]){
+            i++;
+            Command.entry.val(cmdStory[i]);
+        }
+    }
+
     if(e.keyCode == 13 && thisValue != ''){
         e.preventDefault();
+        cmdStory.push(thisValue);
+        i = cmdStory.length;
 
         if(splitValue[0] == 'clear'){
             output = [];
@@ -73,7 +111,8 @@ Command.entry.bind('keydown',function(e){
             Command.entry.val('');
             // Command.request(); //Leave the welcome message when clear
         }
-
+        
+        //switch to textarea mode
         else if(splitValue[0] == 'vim') {
             $('.msg-group').replaceWith('<textarea id="vim" class="msg-group" placeholder="<Shift + Enter> to save OR <Ctrl + Enter> to cancel." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>');
             $('#vim').focus();
@@ -83,6 +122,7 @@ Command.entry.bind('keydown',function(e){
             $("#vim").val('');
             Command.entry.val('');
 
+            // fetch content using a key/value reference
             $.ajax({
                 type : 'POST',
                 url : '_ajax/command.php',
@@ -92,12 +132,14 @@ Command.entry.bind('keydown',function(e){
                 },
                 success : function(response)
                 {
-                    $("#vim").val(response.replace(/\s/g,''));
+                    $("#vim").val(Command.cdata(response.replace(/\s/g,'')));  
                     console.log(response);
                 }
             });
 
+            // listen to our textarea
             $('.msg-group').bind('keydown',function(e){
+                // save the content
                 if(e.keyCode == 13 && e.shiftKey == true){
                     var content = $(this).val();
 
@@ -105,6 +147,7 @@ Command.entry.bind('keydown',function(e){
                     Command.entry.val('');
                     $('.msg-group').html(output);
                 }
+                // cancel textarea
                 else if(e.keyCode == 13 && e.ctrlKey == true){
                     $('.msg-group').replaceWith('<div class="msg-group"></div>');
                     $('.input-group .form-control').focus();
@@ -115,9 +158,10 @@ Command.entry.bind('keydown',function(e){
             });
 
         } else {
+            // Standard command
             Command.request(thisValue);
         }
     }
 });
-
+//init
 Command.request();
