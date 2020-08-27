@@ -77,7 +77,7 @@ class Command extends Desktop
         }
 
         elseif($request[0] == "object") {
-            if(count($request) > 0){
+            if(count($request) == 4){
                 $return = $this->fetchObject($request[1], $request[2], $request[3]);
                 return  json_encode($return);
             } else {

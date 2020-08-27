@@ -17,7 +17,7 @@ class Core
     }
     catch(Exception $event)
     {
-      die('Error : '.$event->getMessage());
+      die('Error : ' . $event->getMessage());
     }
   }
 
