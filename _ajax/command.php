@@ -39,7 +39,7 @@ else if (isset($_POST['isOn']) && !empty($_POST['isOn'])) {
     {
         ?>
             <div class="card-body">
-                <h1 class="card-text float-left">Welcome to</h1><br><br>
+                <!-- <h1 class="card-text float-left">Welcome to</h1><br><br><br> -->
                 <div class=" float-left ascii-art">
 ___________             ___.                 
 \_   _____/______   ____\_ |__   ____  ______

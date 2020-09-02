@@ -57,7 +57,7 @@ Command.request = function(command)
 };
 
 /*
-* Prepare command with content
+* Prepare command with textarea content
 */
 Command.vim = function(content, refKey, refValue) {
     $.ajax({
@@ -112,7 +112,7 @@ Command.entry.bind('keydown',function(e){
             // Command.request(); //Leave the welcome message when clear
         }
         
-        //switch to textarea mode
+        // switch to textarea mode
         else if(splitValue[0] == 'vim') {
             $('.msg-group').replaceWith('<textarea id="vim" class="msg-group" placeholder="<Shift + Enter> to save OR <Ctrl + Enter> to cancel." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>');
             $('#vim').focus();

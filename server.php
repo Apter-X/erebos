@@ -1,3 +1,8 @@
+<?php
+    // $request = array('vim', '1&esp;2&esp;3', 'key', 'value');
+    // print_r(str_replace('&esp;', ' ', $request[1]));
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -16,7 +21,7 @@
         </div>
         
         <div class="input-group">
-            <button class="before-input" disabled>/</button>
+            <button class="before-input" disabled>></button>
             <input id="input-box" class="form-control" rows="1" placeholder="Command Line" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" autofocus>
         </div>
         
