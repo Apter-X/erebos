@@ -9,8 +9,9 @@ Command.cdata = function(string)
     amp = string.replace(/&amp;/g, '&');
     lt = amp.replace(/&lt;/g, '<');
     gt = lt.replace(/&gt;/g, '>');
+    esp = gt.replace(/&esp;/g, ' '); //fix temporary the php str_replace() issue
 
-    return gt;
+    return esp;
 }
 
 /*
@@ -143,7 +144,7 @@ Command.entry.bind('keydown',function(e){
                 if(e.keyCode == 13 && e.shiftKey == true){
                     var content = $(this).val();
 
-                    Command.vim(content.replace(/\s/g,''), splitValue[1], splitValue[2]);
+                    Command.vim(content.replace(/\s/g,'&esp;'), splitValue[1], splitValue[2]);
                     Command.entry.val('');
                     $('.msg-group').html(output);
                 }

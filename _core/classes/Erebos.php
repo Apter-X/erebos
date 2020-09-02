@@ -69,8 +69,10 @@ Class Erebos extends Core
     */
     public function updateValue($table, $key, $newValue, $refKey, $refValue)
     {
+        $espValue = str_replace('&esp;', ' ', $newValue); //str_replace present an issue and don't replace our string
+
         $sql = <<<EOT
-            UPDATE $table SET $key="$newValue" WHERE $refKey='$refValue'
+            UPDATE $table SET $key='$espValue' WHERE $refKey='$refValue'
         EOT;
 
         $return = $this->execute($sql);
