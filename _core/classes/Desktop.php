@@ -12,16 +12,15 @@ Class Desktop extends Erebos
         return $return;
     }
 
-    public function createFile($path, $name, $format, $link)
+    public function createFile($path, $name, $meta)
     {
         $file = array(
             "path"=>$path,
             "name"=>$name,
-            "format"=>$format,
-            "link"=>$link
+            "meta"=>$meta
         );
 
-        $return = $this->insertRow('files', ':path, :name, :format, :link', $file);
+        $return = $this->insertRow('files', ':path, :name, :meta', $file);
         return $return;
     }
 

@@ -68,11 +68,11 @@ class Command extends Desktop
         }
 
         elseif($request[0] == "touch") {
-            if(count($request) == 5){
-                $return = $this->createFile($request[1], $request[2], $request[3], $request[4]);
+            if(count($request) == 4){
+                $return = $this->createFile($request[1], $request[2], $request[3]);
                 return $return;
             } else {
-                return '- At least 4 parameters are required folder, "touch $path $name $format $link."';
+                return '- At least 4 parameters are required folder, "touch $path $name $meta."';
             }
         }
 
