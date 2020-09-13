@@ -6,10 +6,12 @@ var i = 0;
 // fix cdata issue
 Command.cdata = function(string)
 {
-    amp = string.replace(/&amp;/g, '&');
+    slim = string.replace(/\s/g,'')
+    amp = slim.replace(/&amp;/g, '&');
     lt = amp.replace(/&lt;/g, '<');
     gt = lt.replace(/&gt;/g, '>');
-    esp = gt.replace(/&esp;/g, ' '); //fix temporary the php str_replace() issue
+    quot = gt.replace(/&quot;/g, '"');
+    esp = quot.replace(/&esp;/g, ' '); //fix temporary the php str_replace() issue
 
     return esp;
 }
@@ -133,7 +135,7 @@ Command.entry.bind('keydown',function(e){
                 },
                 success : function(response)
                 {
-                    $("#vim").val(Command.cdata(response.replace(/\s/g,'')));  
+                    $("#vim").val(Command.cdata(response));  
                     console.log(response);
                 }
             });
