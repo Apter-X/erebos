@@ -112,7 +112,12 @@ Command.entry.bind('keydown',function(e){
             output = [];
             $('.msg-group').html(output);
             Command.entry.val('');
-            // Command.request(); //Leave the welcome message when clear
+            Command.request(); //Leave the welcome message when clear
+            return;
+        }
+
+        if(splitValue[0] == 'refresh'){
+            location.reload();
         }
         
         // switch to textarea mode
@@ -142,8 +147,10 @@ Command.entry.bind('keydown',function(e){
 
             // listen to our textarea
             $('.msg-group').bind('keydown',function(e){
+                
                 // save the content
                 if(e.keyCode == 13 && e.shiftKey == true){
+                    e.preventDefault();
                     var content = $(this).val();
 
                     Command.vim(content.replace(/\s/g,'&esp;'), splitValue[1], splitValue[2]);
@@ -152,6 +159,7 @@ Command.entry.bind('keydown',function(e){
                 }
                 // cancel textarea
                 else if(e.keyCode == 13 && e.ctrlKey == true){
+                    e.preventDefault();
                     $('.msg-group').replaceWith('<div class="msg-group"></div>');
                     $('.input-group .form-control').focus();
 
