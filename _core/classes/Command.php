@@ -27,7 +27,7 @@ class Command extends Desktop
                 $return = $this->updateValue($request[1], $request[2], $request[3], $request[4], $request[5]);
                 return $return;
             } else {
-                return '- At least 4 parameters are required, "update $table $key $newValue $refKey $refValue".';
+                return '- At least 5 parameters are required, "update $table $key $newValue $refKey $refValue".';
             }
         }
 
