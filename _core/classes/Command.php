@@ -1,6 +1,12 @@
 <?php
 class Command extends Desktop
 {
+    public function vim($content, $refKey, $refValue)
+    {
+        $return = $this->editContent($content, $refKey, $refValue);
+        return $return;
+    }
+
     public function post($command)
     {
         $request = explode(" ", $command);
@@ -10,15 +16,6 @@ class Command extends Desktop
                 $this->debug($request[1], $request[2], $request[3], $request[4]);
             } else {
                 $this->debug($request[1], $request[2]);
-            }
-        }
-
-        elseif($request[0] == "vim") {
-            if(count($request) == 4){
-                $return = $this->editContent($request[1], $request[2], $request[3]);
-                return $return;
-            } else {
-                return '- At least 3 parameters are required, "vim $newValue $refKey $refValue".';
             }
         }
 

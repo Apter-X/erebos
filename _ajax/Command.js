@@ -6,14 +6,14 @@ var i = 0;
 // fix cdata issue
 Command.cdata = function(string)
 {
-    slim = string.replace(/\s/g,'')
-    amp = slim.replace(/&amp;/g, '&');
+    amp = string.replace(/&amp;/g, '&');
     lt = amp.replace(/&lt;/g, '<');
     gt = lt.replace(/&gt;/g, '>');
     quot = gt.replace(/&quot;/g, '"');
-    esp = quot.replace(/&esp;/g, ' '); //fix temporary the php str_replace() issue
+    fSpace = quot.replace('        ', '');
+    lSpace = fSpace.replace('    ', '');
 
-    return esp;
+    return lSpace;
 }
 
 /*
@@ -48,7 +48,7 @@ Command.request = function(command)
                 $('.msg-group').html(output);
                 $('.msg-group').animate({ scrollTop: 9999*9999 /* Temporary Solution */ }, 'fast');
             }
-            else //standard command 
+            else //regular command 
             {
                 output.push(response);
 
@@ -68,7 +68,9 @@ Command.vim = function(content, refKey, refValue) {
         url : '_ajax/command.php',
         data: {
             isTxt: true,
-            command: "vim" + " " + content + " " + refKey + " " + refValue
+            refKey: refKey,
+            refValue: refValue,
+            content: content
         },
         success : function(response){
             $('.msg-group').replaceWith('<div class="msg-group"></div>');
@@ -140,8 +142,7 @@ Command.entry.bind('keydown',function(e){
                 },
                 success : function(response)
                 {
-                    $("#vim").val(Command.cdata(response));  
-                    console.log(response);
+                    $("#vim").val(Command.cdata(response));
                 }
             });
 
@@ -153,7 +154,7 @@ Command.entry.bind('keydown',function(e){
                     e.preventDefault();
                     var content = $(this).val();
 
-                    Command.vim(content.replace(/\s/g,'&esp;'), splitValue[1], splitValue[2]);
+                    Command.vim(content, splitValue[1], splitValue[2]);
                     Command.entry.val('');
                     $('.msg-group').html(output);
                 }
@@ -174,5 +175,6 @@ Command.entry.bind('keydown',function(e){
         }
     }
 });
+
 //init
 Command.request();

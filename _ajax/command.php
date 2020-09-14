@@ -8,10 +8,14 @@ $commands = array();
 //if is a textarea post
 if (isset($_POST['isTxt']) && !empty($_POST['isTxt'])){
 
-    $command = str_secure($_POST['command']);
-    array_push($commands, $cmd->post($command));
+    $content = str_secure($_POST['content']);
+    $refKey = str_secure($_POST['refKey']);
+    $refValue = str_secure($_POST['refValue']);
+
+    array_push($commands, "vim " . $refKey . " " . $refValue);
+    array_push($commands, $cmd->vim($content, $refKey, $refValue));
     
-    foreach ($commands as $command) 
+    foreach ($commands as $command)
     {
         ?>
         <div class="card-body" id="padding">

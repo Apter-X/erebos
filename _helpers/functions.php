@@ -17,5 +17,5 @@ function debug($vars)
 
 function str_secure($string)
 {
-    return trim(htmlspecialchars($string));
+    return htmlspecialchars($string);
 }

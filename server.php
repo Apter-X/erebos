@@ -1,8 +1,3 @@
-<?php
-    // $request = array('vim', '1&esp;2&esp;3', 'key', 'value');
-    // print_r(str_replace('&esp;', ' ', $request[1]));
-?>
-
 <!DOCTYPE html>
 <html>
     <head>
