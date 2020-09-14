@@ -2,10 +2,10 @@
 - [] Set position path
 - [x] add comments
 - [] media query debug console
-- [] Add background annimation
-- [x] Add autocomplete cmds
-- [x] Add favicon
+- [] Add cool background animation
+- [x] Add autocomplete commands
+- [x] Add fav-icon
 - [] Cmd wiki qui fetch des introduction wikipedia
 - [] Session save output and cmdStory
 - [] Execute files
-- [x] 'help' command
+- [x] Add 'help' command
