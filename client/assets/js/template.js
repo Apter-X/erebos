@@ -16,5 +16,3 @@ Template.execute = function()
         }
     })
 };
-
-Template.execute();
