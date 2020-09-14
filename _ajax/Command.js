@@ -177,7 +177,7 @@ Command.entry.bind('keydown',function(e){
             });
 
         } else {
-            // Standard command
+            // regular command
             Command.request(thisValue);
         }
     }
