@@ -1,9 +1,11 @@
-- Fetch actual content on vim (done)
-- Set position path
-- add comments (done)
-- media query debug console
-- Add background annimation
-- Add autocomplete cmds (done)
-- ajouter un favicon
-- Cmd wiki qui fetch des introduction wikipedia
-- Session save output and cmdStory
+- [x] Fetch actual content on vim
+- [] Set position path
+- [x] add comments
+- [] media query debug console
+- [] Add background annimation
+- [x] Add autocomplete cmds
+- [x] Add favicon
+- [] Cmd wiki qui fetch des introduction wikipedia
+- [] Session save output and cmdStory
+- [] Execute files
+- [x] 'help' command
