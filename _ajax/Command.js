@@ -107,8 +107,15 @@ Command.entry.bind('keydown',function(e){
 
     if(e.keyCode == 13 && thisValue != ''){
         e.preventDefault();
-        cmdStory.push(thisValue);
-        i = cmdStory.length;
+        if(jQuery.inArray(thisValue, cmdStory) !== -1) {
+            cmdStory = jQuery.grep(cmdStory, function(value) {
+                return value != thisValue;
+            });
+            cmdStory.push(thisValue);
+        } else {
+            cmdStory.push(thisValue);
+            i = cmdStory.length;
+        }
 
         if(splitValue[0] == 'clear'){
             output = [];
