@@ -10,9 +10,7 @@ Template.execute = function()
         },
         success : function(response)
         {
-            quot = response.replace(/&quot;/g, '"');
-            esp = quot.replace(/&esp;/g, ' ');
-            $('.template').html(esp);
+            $('.template').html(response);
         }
     })
 };
