@@ -26,7 +26,9 @@ Class Desktop extends Erebos
 
     public function editContent($newValue, $refKey, $refValue)
     {
-        $return = $this->updateValue("files", "content", $newValue, $refKey, $refValue);
+        $espValue = str_replace('&esp;', ' ', $newValue); //str_replace present an issue and don't replace our string
+
+        $return = $this->updateValue("files", "content", $espValue, $refKey, $refValue);
         return $return;
     }
 }
