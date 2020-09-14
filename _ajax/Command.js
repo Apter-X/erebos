@@ -112,6 +112,7 @@ Command.entry.bind('keydown',function(e){
                 return value != thisValue;
             });
             cmdStory.push(thisValue);
+            i = cmdStory.length;
         } else {
             cmdStory.push(thisValue);
             i = cmdStory.length;
