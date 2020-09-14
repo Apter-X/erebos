@@ -1,6 +1,4 @@
-var Template = {};
-
-Template.execute = function()
+function execute()
 {
     $.ajax({
         type : 'POST',
@@ -14,3 +12,5 @@ Template.execute = function()
         }
     })
 };
+
+execute();
