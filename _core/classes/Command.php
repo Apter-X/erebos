@@ -112,7 +112,7 @@ class Command extends Desktop
             <ul>
                 <div><u>Utilities:</u></div>
                 <li><b>clear</b>     : Clear the principal screen.</li>
-                <li><b>refresh</b>   : Refresh the page.</li>
+                <li><b>reset</b>   : Refresh the page.</li>
                 <li><b>lorem</b>     : A lot of text.</li>
             </ul>';
         }

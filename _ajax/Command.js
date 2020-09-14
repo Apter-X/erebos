@@ -116,7 +116,7 @@ Command.entry.bind('keydown',function(e){
             return;
         }
 
-        if(splitValue[0] == 'refresh'){
+        if(splitValue[0] == 'reset'){
             location.reload();
         }
         
