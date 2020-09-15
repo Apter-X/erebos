@@ -13,8 +13,8 @@ if (isset($_POST['isTxt']) && !empty($_POST['isTxt'])){
     $refValue = str_secure($_POST['refValue']);
 
     array_push($commands, "vim " . $refKey . " " . $refValue);
-    array_push($commands, $cmd->vim($content, $refKey, $refValue));
-    
+    $cmd->vim($content, $refKey, $refValue);
+
     foreach ($commands as $command)
     {
         ?>
