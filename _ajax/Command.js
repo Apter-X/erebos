@@ -85,6 +85,7 @@ Command.vim = function(content, refKey, refValue) {
 
 // event listers and executions
 Command.entry = $('.input-group .form-control');
+Command.entry.focus();
 Command.entry.bind('keydown',function(e){
     thisValue = $(this).val();
     splitValue = thisValue.split(' ');
