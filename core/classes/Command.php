@@ -69,7 +69,7 @@ class Command extends Desktop
                 $return = $this->createFile($request[1], $request[2], $request[3]);
                 return $return;
             } else {
-                return '- At least 4 parameters are required folder, "touch $path $name $meta."';
+                return '- At least 3 parameters are required folder, "touch $folder_id $name $format."';
             }
         }
 
