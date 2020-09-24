@@ -1,5 +1,5 @@
 <?php
-include_once '../_classes/Database.php';
+include_once '../classes/Database.php';
 
 if (isset($_POST['isOn']) && !empty($_POST['isOn'])) {
     $database = new Database;

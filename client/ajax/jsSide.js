@@ -2,7 +2,7 @@ function execute()
 {
     $.ajax({
         type : 'POST',
-        url : '_ajax/template.php',
+        url : 'ajax/phpSide.php',
         data: {
             isOn: true,
         },

@@ -94,7 +94,6 @@ class Command extends Desktop
             '<p>Erebos is a database management system web-terminal using commands.</p>            
             <ul>
                 <div><u>Database:</u></div>
-                <li><b>debug</b>     : Get an array of a table vardumped on the left screen.</li>
                 <li><b>update</b>    : Update a value.</li>
                 <li><b>addColumn</b> : Add a column on a table.</li>
                 <li><b>delete</b>    : Delete an object.</li>
@@ -105,6 +104,7 @@ class Command extends Desktop
             </ul>
             <ul>
                 <div><u>Tools:</u></div>
+                <li><b>debug</b>     : Get an array of a table vardumped on the left screen.</li>
                 <li><b>vim</b>       : Edit a file content.</li>
             </ul>
             <ul>

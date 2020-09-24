@@ -27,7 +27,7 @@ Class Erebos extends Core
             EOT;
         } else {
             $sql = <<<EOT
-                SELECT * FROM $table WHERE $refKey='$refValue'
+                SELECT $target FROM $table WHERE $refKey='$refValue'
             EOT;
         }
 

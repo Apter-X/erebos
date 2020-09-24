@@ -23,7 +23,7 @@ Command.request = function(command)
 {
     $.ajax({
         type : 'POST',
-        url : '_ajax/command.php',
+        url : 'ajax/phpSide.php',
         data: {
             isOn: true,
             command: command
@@ -65,7 +65,7 @@ Command.request = function(command)
 Command.vim = function(content, refKey, refValue) {
     $.ajax({
         type : 'POST',
-        url : '_ajax/command.php',
+        url : 'ajax/phpSide.php',
         data: {
             isTxt: true,
             refKey: refKey,
@@ -144,7 +144,7 @@ Command.entry.bind('keydown',function(e){
             // fetch content using a key/value reference
             $.ajax({
                 type : 'POST',
-                url : '_ajax/command.php',
+                url : 'ajax/phpSide.php',
                 data: {
                     isFetch: true,
                     command: "fetch content files " + splitValue[1] + " " + splitValue[2]
