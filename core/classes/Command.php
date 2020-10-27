@@ -24,7 +24,7 @@ class Command extends Desktop
                 $return = $this->changePath($path, $request[1]);
                 return $return;
             } else {
-                return '- At least 1 parameters are required, "cd $path".';
+                return '/';
             }
         }
 
