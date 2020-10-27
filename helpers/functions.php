@@ -19,3 +19,9 @@ function str_secure($string)
 {
     return htmlspecialchars($string);
 }
+
+function load_classes(){
+    spl_autoload_register(function ($class){
+        include_once '../core/classes/'. $class . '.php';
+    });
+}
