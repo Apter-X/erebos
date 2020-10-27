@@ -100,7 +100,7 @@ class Command extends Desktop
             '<p>- Erebos is a web-terminal database management system.</p>            
 
                 <div><u>Database:</u></div>
-                <li style="list-style-type:none;"><b>cd</b>    : Move into a certain folder.</li>
+                <li style="list-style-type:none;"><b>cd</b>    : Move into a specified folder.</li>
                 <li style="list-style-type:none;"><b>update</b>    : Update a value.</li>
                 <li style="list-style-type:none;"><b>addColumn</b> : Add a column on a table.</li>
                 <li style="list-style-type:none;"><b>delete</b>    : Delete an object.</li>
