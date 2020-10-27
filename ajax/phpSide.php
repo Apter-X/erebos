@@ -18,11 +18,11 @@ if (isset($_POST['isTxt']) && !empty($_POST['isTxt'])){
     foreach ($commands as $command)
     {
         ?>
-        <div class="card-body" id="padding">
-            <p class="card-text float-left">
-                <?= $command; ?>
-            </p>
-        </div>
+            <ul style="list-style-type:none;">
+                <li>
+                    <?= $command; ?>
+                </li>
+            </ul>
         <?php
     }
 }
@@ -68,11 +68,11 @@ ___________             ___.
             foreach ($commands as $command) 
             {
                 ?>
-                <div class="card-body" id="padding">
-                    <p class="card-text float-left">
+                <ul style="list-style-type:none;">
+                    <li>
                         <?= $command; ?>
-                    </p>
-                </div>
+                    </li>
+                </ul>
                 <?php
             }
         } else {

@@ -38,10 +38,11 @@ Command.request = function(command)
             //switch to debug console output
             if(cmd[0] == "debug"){
                 output.push(`
-                <div class="card-body" id="padding">
-                    <p class="card-text float-left">
+                <ul style="list-style-type:none;">
+                    <li>
                         ${command}
-                    </p>
+                    </li>
+                </ul>
                 `);
 
                 $('.debug').html(response);

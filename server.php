@@ -19,9 +19,9 @@
 
         <div class="debug float-right"></div>
         <div class="msg-group">
-            <!-- <div class="card-body">
-                <p class="card-text float-left">Lorem ipsum dolor sit.</p>
-            </div> -->
+            <!-- <ul>">
+                <li>Lorem ipsum dolor sit.</li>
+            </ul> -->
         </div>
         
         <div class="input-group">

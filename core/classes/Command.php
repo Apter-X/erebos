@@ -83,16 +83,13 @@ class Command extends Desktop
         }
 
         elseif($request[0] == "lorem"){
-            return 
-            '<p>
-                - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. 
-            </p>';
+            return '- Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.';
         }
         
         elseif($request[0] == "help"){
             return 
-            '<p>Erebos is a database management system web-terminal using commands.</p>            
-            <ul>
+            '<p>- Erebos is a web-terminal database management system.</p>            
+
                 <div><u>Database:</u></div>
                 <li><b>update</b>    : Update a value.</li>
                 <li><b>addColumn</b> : Add a column on a table.</li>
@@ -101,18 +98,16 @@ class Command extends Desktop
                 <li><b>mkdir</b>     : Create a folder format and store it.</li>
                 <li><b>touch</b>     : Create a file format and store it.</li>
                 <li><b>object</b>    : Read an object.</li>
-            </ul>
-            <ul>
+
                 <div><u>Tools:</u></div>
                 <li><b>debug</b>     : Get an array of a table vardumped on the left screen.</li>
                 <li><b>vim</b>       : Edit a file content.</li>
-            </ul>
-            <ul>
+
                 <div><u>Utilities:</u></div>
                 <li><b>clear</b>     : Clear the principal screen.</li>
                 <li><b>reset</b>   : Refresh the page.</li>
                 <li><b>lorem</b>     : A lot of text.</li>
-            </ul>';
+            ';
         }
 
         else {
