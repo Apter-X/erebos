@@ -7,7 +7,7 @@ class Command extends Desktop
         return $return;
     }
 
-    public function post($command)
+    public function post($command, $path = NULL)
     {
         $request = explode(" ", $command);
 
@@ -16,6 +16,15 @@ class Command extends Desktop
                 $this->debug($request[1], $request[2], $request[3], $request[4]);
             } else {
                 $this->debug($request[1], $request[2]);
+            }
+        }
+
+        elseif($request[0] == "cd") {
+            if(count($request) == 2){
+                $return = $this->changePath($path, $request[1]);
+                return $return;
+            } else {
+                return '- At least 1 parameters are required, "cd $path".';
             }
         }
 
@@ -42,7 +51,7 @@ class Command extends Desktop
                 $return = $this->deleteRow($request[1], $request[2], $request[3]);
                 return $return;
             } else {
-                return '- At least 3 parameters are required folder, "delete $table $refKey $refValue."';
+                return '- At least 3 parameters are required, "delete $table $refKey $refValue".';
             }
         }
 
@@ -56,20 +65,20 @@ class Command extends Desktop
         }
 
         elseif($request[0] == "mkdir") { 
-            if(count($request) == 3){
-                $return = $this->createFolder($request[1], $request[2]);
+            if(count($request) == 2){
+                $return = $this->createFolder($path, $request[1]);
                 return $return;
             } else {
-                return '- At least 2 parameters are required folder, "mkdir $path $name."';
+                return '- At least 1 parameters are required, "mkdir $name".';
             }
         }
 
         elseif($request[0] == "touch") {
-            if(count($request) == 4){
-                $return = $this->createFile($request[1], $request[2], $request[3]);
+            if(count($request) == 3){
+                $return = $this->createFile($path, $request[1], $request[2]);
                 return $return;
             } else {
-                return '- At least 3 parameters are required folder, "touch $folder_id $name $format."';
+                return '- At least 3 parameters are required, "touch $name $format".';
             }
         }
 
@@ -78,7 +87,7 @@ class Command extends Desktop
                 $return = $this->fetchObject($request[1], $request[2], $request[3]);
                 return  json_encode($return);
             } else {
-                return '- At least 3 parameter are required, "object $table $refKey $refValue"';
+                return '- At least 3 parameter are required, "object $table $refKey $refValue".';
             }
         }
 

@@ -2,6 +2,7 @@ var Command = {}; //literal object
 var output = [];
 var cmdStory = [];
 var i = 0;
+var path = "/";
 
 // fix cdata issue
 Command.cdata = function(string)
@@ -26,7 +27,8 @@ Command.request = function(command)
         url : 'ajax/phpSide.php',
         data: {
             isOn: true,
-            command: command
+            command: command,
+            path: path
         },
         success : function(response)
         {
@@ -49,7 +51,13 @@ Command.request = function(command)
                 $('.msg-group').html(output);
                 $('.msg-group').animate({ scrollTop: 9999*9999 /* Temporary Solution */ }, 'fast');
             }
-            else //regular command 
+
+            else if(cmd[0] == "cd"){
+                path = response;
+                $('.input-group .before-input').html(path);
+            }
+            
+            else //success regular command 
             {
                 output.push(response);
 
@@ -187,4 +195,5 @@ Command.entry.bind('keydown',function(e){
 });
 
 //init
+$('.input-group .before-input').html(path);
 Command.request();

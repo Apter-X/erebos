@@ -83,7 +83,7 @@ Class Erebos extends Core
     * @param string $selected table
     * @param string $reference key
     * @param string|int $reference value
-    * @return PDOStatement
+    * @return string
     */
     public function fetchValue($target, $table, $refKey, $refValue)
     {
@@ -94,7 +94,25 @@ Class Erebos extends Core
         $this->setFetchMode(PDO::FETCH_ASSOC);
         $response = $this->fetch($sql);
 
-        $return = implode(array_values($response[0])); //Remove the array and the key
+        $return = implode(array_column($response, $target)); //Remove the array and the key
+        return $return;
+    }
+
+    public function fetchColumn($column, $table, $refKey = NULL, $refValue = NULL)
+    {
+        if(empty($refKey) && empty($refValue)){
+            $sql = <<<EOT
+                SELECT $column FROM $table
+            EOT;
+        } else {
+            $sql = <<<EOT
+                SELECT $column FROM $table WHERE $refKey='$refValue'
+            EOT;
+        }
+
+        $this->setFetchMode(PDO::FETCH_ASSOC);
+        $return = $this->fetch($sql);
+
         return $return;
     }
 

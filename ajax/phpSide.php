@@ -1,6 +1,5 @@
 <?php
 require '../core/init.php';
-include_once '../helpers/functions.php';
 
 $cmd = new Command;
 $commands = array();
@@ -59,11 +58,22 @@ ___________             ___.
     else if(isset($_POST['command']) && !empty($_POST['command'])) 
     {
         $command = str_secure($_POST['command']);
+        $path = str_secure($_POST['path']);
         $arr = explode(' ', $command);
 
-        if($arr[0] != "debug"){ //too much conditions
-            array_push($commands, $command);
+        if($arr[0] == "debug"){ //too much conditions
             array_push($commands, $cmd->post($command));
+        } 
+        
+        else if($arr[0] == "cd") { 
+            ?>
+                <?= $cmd->post($command, trim($path)); ?>
+            <?php
+        } 
+        
+        else {
+            array_push($commands, $command);
+            array_push($commands, $cmd->post($command, trim($path)));
             
             foreach ($commands as $command) 
             {
@@ -75,8 +85,6 @@ ___________             ___.
                 </ul>
                 <?php
             }
-        } else {
-            array_push($commands, $cmd->post($command));
         }
     }
 }
