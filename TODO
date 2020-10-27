@@ -1,5 +1,5 @@
 - [x] Fetch actual content on vim
-- [] Set position path
+- [x] Set position path
 - [x] add comments
 - [x] media query debug console
 - [] Add cool background animation
@@ -9,4 +9,7 @@
 - [] Session save output and cmdStory
 - [] Execute files
 - [x] Add 'help' command
-- [] Store commands and commands story
+- [x] Store commands and commands story
+- [] Turn the AJAX sides into switch cases + optimization
+- [] stock global variables with $_GET[] method
+- [] 

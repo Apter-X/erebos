@@ -1,6 +1,6 @@
 body {
     font-family: 'VT323', monospace;
-	font-size: 1em;
+	font-size: 1.2em;
     margin: 0;
     color: #ffffff;
     background: #000000;
@@ -29,6 +29,15 @@ a {
     overflow-y: auto;
     scrollbar-color: #919191 #000000;
     scrollbar-width: thin;
+}
+
+.chrono {
+    position: absolute;
+    max-width: 80%;
+    width: 80%;
+    height: 500px;
+    left: 0;
+    top: 0;
 }
 
 .msg-group {
@@ -60,15 +69,6 @@ a {
     font-family: monospace;
     white-space: pre;
     color: #2cff6b;
-}
-
-.chrono {
-    max-width: 80%;
-    position: absolute;
-    width: 80%;
-    height: 20%;
-    left: 0;
-    top: 0;
 }
 
 #input-box:focus,
