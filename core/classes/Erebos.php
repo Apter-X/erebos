@@ -167,21 +167,5 @@ Class Erebos extends Core
 
         $return = $this->execute($sql);
         return $sql . " | " . $return;
-    }
-
-     /**
-    * Delete column table
-    * @param string $selected table
-    * @param string $name new column
-    * @param string $type data
-    * @return requestSQL+PDOStatement
-    */
-    public function deleteColumn($table, $name, $type){  
-        $sql = <<<EOT
-            
-        EOT; //+ new request to code
-
-        $return = $this->execute($sql);
-        return $sql . " | " . $return;
-    }
+    }    
 }
