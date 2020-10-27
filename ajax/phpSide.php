@@ -17,7 +17,7 @@ if (isset($_POST['isTxt']) && !empty($_POST['isTxt'])){
     foreach ($commands as $command)
     {
         ?>
-            <ul style="list-style-type:none;">
+            <ul>
                 <li>
                     <?= $command; ?>
                 </li>
@@ -78,7 +78,7 @@ ___________             ___.
             foreach ($commands as $command) 
             {
                 ?>
-                <ul style="list-style-type:none;">
+                <ul>
                     <li>
                         <?= $command; ?>
                     </li>

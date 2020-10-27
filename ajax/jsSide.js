@@ -40,7 +40,7 @@ Command.request = function(command)
             //switch to debug console output
             if(cmd[0] == "debug"){
                 output.push(`
-                <ul style="list-style-type:none;">
+                <ul>
                     <li>
                         ${command}
                     </li>
