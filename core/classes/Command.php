@@ -29,11 +29,11 @@ class Command extends Desktop
         }
 
         elseif($request[0] == "ls") {
-            if(count($request) == 2){
+            if(count($request) == 1){
                 $return = $this->list($path);
                 return $return;
             } else {
-                return 'At least 1 parameters are required, "ls $content".';
+                return '- No parameter required.';
             }
         }
 
