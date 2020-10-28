@@ -12,4 +12,5 @@
 - [x] Store commands and commands story
 - [] Turn the AJAX sides into switch cases + optimization
 - [] stock global variables with $_GET[] method
-- [] 
+- [] function that establish connection and host automatically our website
+- [] Store functions in the database
