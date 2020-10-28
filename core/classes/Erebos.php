@@ -167,5 +167,5 @@ Class Erebos extends Core
 
         $return = $this->execute($sql);
         return $sql . " | " . $return;
-    }    
+    }
 }

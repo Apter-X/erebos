@@ -28,6 +28,15 @@ class Command extends Desktop
             }
         }
 
+        elseif($request[0] == "ls") {
+            if(count($request) == 2){
+                $return = $this->list($path);
+                return $return;
+            } else {
+                return 'At least 1 parameters are required, "ls $content".';
+            }
+        }
+
         elseif($request[0] == "update") {
             if(count($request) == 6){
                 $return = $this->updateValue($request[1], $request[2], $request[3], $request[4], $request[5]);

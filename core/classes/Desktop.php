@@ -1,6 +1,17 @@
 <?php
 Class Desktop extends Erebos 
 {
+    public function list($path)
+    {
+        $parent_id = $this->fetchValue('folder_id', 'folders', 'path', $path);
+        $folder_names = json_encode(array_column($this->fetchColumn('name', 'folders', 'parent_id', $parent_id), 'name'));
+        $file_names = json_encode(array_column($this->fetchColumn('name', 'files', 'parent_id', $parent_id), 'name'));
+        
+        $str_content = $folder_names . "<br>" . $file_names;
+
+        return $str_content;
+    }
+    
     public function changePath($path, $target)
     {
         if ($target == ".."){
