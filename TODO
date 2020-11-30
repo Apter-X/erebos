@@ -14,3 +14,4 @@
 - [] stock global variables with $_GET[] method
 - [] function that establish connection and host automatically our website
 - [] Store functions in the database
+- [] Add aliases
