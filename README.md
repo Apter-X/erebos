@@ -27,5 +27,5 @@ erebos is a web-terminal using Vanilla PHP/MySQL powered with my experimental fr
 //TODO
 
 ## Gallery
-![alt text](https://github.com/Apter-X/erebos/blob/master/Capture d’écran 2021-01-07?raw=true)
-![alt text](https://github.com/Apter-X/erebos/blob/master/Capture d’écran 2021-01-07 202610?raw=true)
+![alt text](_doc/Capture d’écran 2021-01-07.png)
+![alt text](_doc/Capture d’écran 2021-01-07 202610.png)
