@@ -1,6 +1,10 @@
 # erebos
 erebos is a very simple web-terminal using Vanilla PHP/MySQL powered with my experimental framework `Erebos`.
 
+## Instructions
++ Simply create the MySql database with the `core\erebos.sql` commands.
++ run the project on the `localhost/`
+
 ## Structure
 ```shell
   ajax\
@@ -18,10 +22,6 @@ erebos is a very simple web-terminal using Vanilla PHP/MySQL powered with my exp
   └── functions.php
   index.php
 ```
-
-## Instructions
-+ Simply create the MySql database with the `core\erebos.sql` commands.
-+ run the project on the `localhost/`
 
 ## HELPME
 //TODO
