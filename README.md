@@ -31,5 +31,5 @@ erebos is a very simple web-terminal using Vanilla PHP/MySQL powered with my exp
 
 ![Alt Text](https://github.com/Apter-X/erebos/blob/master/_doc/Capture%20d%E2%80%99%C3%A9cran%202021-01-07%20202610.png)
 
-## Lisence
+## License
 Under **GNU General Public License v3.0**.
